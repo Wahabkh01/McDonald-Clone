@@ -124,7 +124,7 @@ export default async function ListingDetail({
               {item.price && (
                 <div className="pt-4">
                   <p className="text-2xl font-bold text-red-600">
-                    ${item.price}
+                    Rs. {item.price}
                   </p>
                 </div>
               )}

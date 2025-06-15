@@ -53,7 +53,7 @@ interface Props {
               {/* Price */}
               <div className="pt-4">
                 <p className="text-2xl font-bold text-red-600">
-                  ${item.attributes.price}
+                  Rs. {item.attributes.price}
                 </p>
               </div>
   

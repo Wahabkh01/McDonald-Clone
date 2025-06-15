@@ -78,7 +78,7 @@ export default function ListingCard({ item }: Props) {
             {(item.price || item.calories) && (
               <div className="flex justify-center items-center space-x-4 text-sm text-gray-600">
                 {item.price && (
-                  <span className="font-semibold">${item.price}</span>
+                  <span className="font-semibold">Rs. {item.price}</span>
                 )}
                 {item.price && item.calories && <span>•</span>}
                 {item.calories && (
