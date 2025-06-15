@@ -9,7 +9,6 @@ interface Category {
   slug: string;
   icon?: string;
   featured?: boolean;
-
 }
 
 interface SidebarProps {
@@ -57,16 +56,10 @@ export default function Sidebar({
               }`}
             >
               <div className="flex items-center space-x-3">
-
                 <div className="flex items-center space-x-2">
                   <span className="text-left font-medium text-gray-800 text-sm">
                     {category.name}
                   </span>
-                  {category.hasTag && category.tagText && (
-                    <div className="bg-yellow-400 text-black px-2 py-1 rounded text-xs font-bold">
-                      {category.tagText}
-                    </div>
-                  )}
                 </div>
               </div>
               <ChevronRight className="w-5 h-5 text-gray-400" />
