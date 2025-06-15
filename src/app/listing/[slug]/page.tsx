@@ -2,7 +2,7 @@
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const res = await fetch("http://localhost:1337/api/menu-items?populate=*");
+  const res = await fetch("https://ambitious-action-ddb9a91fb4.strapiapp.com/api/menu-items?populate=*");
   const json = await res.json();
   const listings = json.data;
 
@@ -21,7 +21,7 @@ export default async function ListingDetail({
   const { slug } = await params;
 
   const res = await fetch(
-    `http://localhost:1337/api/menu-items?filters[slug][$eq]=${slug}&populate=*`,
+    `https://ambitious-action-ddb9a91fb4.strapiapp.com/api/menu-items?filters[slug][$eq]=${slug}&populate=*`,
     { cache: "no-store" }
   );
   const json = await res.json();
@@ -29,11 +29,18 @@ export default async function ListingDetail({
 
   if (!item) return notFound();
 
-  const imageUrl = item.image?.data?.attributes?.url
-    ? `http://localhost:1337${item.image.data.attributes.url}`
-    : item.image?.[0]?.url
-    ? `http://localhost:1337${item.image[0].url}`
-    : null;
+  // Simple and clean image URL handling based on debug results
+  const getImageUrl = () => {
+    if (item.image && Array.isArray(item.image) && item.image.length > 0) {
+      const firstImage = item.image[0];
+      if (firstImage.url) {
+        return firstImage.url;
+      }
+    }
+    return null;
+  };
+
+  const imageUrl = getImageUrl();
 
   // Extract text from rich text description
   const getDescriptionText = (description: any[]): string => {
